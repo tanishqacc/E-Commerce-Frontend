@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Your Cart</h2>
+  <div class="cart-header">
+      <p>Price</p>
+  </div>
+  <div *ngFor="let item of (cartItems$ | async)" class="cart-item">
+      <div class="cart-item-details">
+          <img src="{{item.product.image}}" alt="{{item.product.name}}" class="product-image">
+          <div class="product-info">
+              <h4>{{item.product.name}}</h4>
+              <p>{{item.product.description}}</p>
+              <!-- <p class="small-text">Sold by: {{item.product.seller}}</p> -->
+              <button class="btn btn-link text-danger" (click)="removeFromCart(item.product)">Remove</button>
+              <input type="number" [(ngModel)]="item.quantity" 
+                  (change)="updateQuantity(item.product, item.quantity)" 
+                  min="1" class="quantity-input">
+          </div>
+      </div>
+      <div class="cart-item-price">
+          <p>₹{{item.product.price * item.quantity}}</p>
+      </div>
+  </div>
+  <div class="cart-footer">
+      <button class="btn btn-warning" (click)="clearCart()">Clear Cart</button>
+      <!-- <div class="total-price">
+          <h3>Total: ₹{{totalPrice$ | async}}</h3>
+      </div> -->
+  </div>
+</div>

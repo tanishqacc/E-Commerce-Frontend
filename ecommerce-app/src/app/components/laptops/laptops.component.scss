@@ -1,0 +1,10 @@
+.card {
+    margin: 20px 0;
+    .card-img-top {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  

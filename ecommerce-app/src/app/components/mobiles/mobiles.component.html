@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of products">
+      <div class="card">
+        <img src="{{product.image}}" class="card-img-top" alt="{{product.name}}" (click)="viewProductDetails(product)">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          
+          <!-- Add Quantity Controls and Add to Cart Button -->
+          <div *ngIf="getItemQuantity(product) > 0; else addButton">
+            <div class="quantity-controls">
+              <button class="btn btn-secondary" (click)="decrementQuantity(product)">-</button>
+              <span class="mx-2">{{ getItemQuantity(product) }}</span>
+              <button class="btn btn-secondary" (click)="incrementQuantity(product)">+</button>
+            </div>
+          </div>
+          <ng-template #addButton>
+            <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+          </ng-template>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
